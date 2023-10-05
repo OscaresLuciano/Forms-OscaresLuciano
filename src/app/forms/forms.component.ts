@@ -15,7 +15,7 @@ export class FormsComponent {
     private formBuilder: FormBuilder
   ){
     this.userForm = this.formBuilder.group({
-      user: ['', [Validators.required, Validators.minLength(6), forbiddenUserValidator]],
+      user: ['', [Validators.required, Validators.minLength(6), forbiddenUserValidator('usuario')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     })
