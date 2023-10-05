@@ -1,0 +1,98 @@
+<h1 class="text-center">Formulario</h1>
+<form [formGroup]="userForm" class="text-center">
+  <div class="mb-3 row">
+    <label for="inputName" class="col-sm-2 form-label col-form-label"
+      >Usuario</label
+    >
+    <div class="col-sm-9">
+      <input
+        class="form-control"
+        formControlName="user"
+        type="text"
+        id="inputUser"
+        [ngClass]="{ 'is-invalid': userControlIsInvalid }"
+      />
+      <div class="invalid-feedback">
+        <ng-container *ngIf="userControl.errors?.['required']">
+          Este campo es requerido.
+        </ng-container>
+        <ng-container *ngIf="userControl.errors?.['forbiddenUser']">
+          El nombre de usuario "User" o "Usuario" no es valido.
+        </ng-container>
+        <ng-container *ngIf="userControl.errors?.['minlength']">
+          El nombre de usuario debe tener al menos 6 caracteres.
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="inputEmail" class="col-sm-2 form-label col-form-label"
+      >Email</label
+    >
+    <div class="col-sm-9">
+      <input
+        class="form-control"
+        formControlName="email"
+        type="text"
+        id="inputEmail"
+        value="email@example.com"
+        [ngClass]="{ 'is-invalid': emailControlIsInvalid }"
+      />
+      <div class="invalid-feedback">
+        <ng-container *ngIf="emailControl.errors?.['required']">
+          Este campo es requerido.
+        </ng-container>
+        <ng-container *ngIf="emailControl.errors?.['email']">
+          El email no es valido.
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="inputPassword" class="col-sm-2 col-form-label"
+      >Contraseña</label
+    >
+    <div class="col-sm-9">
+      <input
+        class="form-control"
+        formControlName="password"
+        type="password"
+        id="inputPassword"
+        [ngClass]="{ 'is-invalid': passwordControlIsInvalid }"
+      />
+      <div class="invalid-feedback">
+        <ng-container *ngIf="passwordControl.errors?.['required']">
+          Este campo es requerido.
+        </ng-container>
+        <ng-container *ngIf="passwordControl.errors?.['minlength']">
+          La contraseña debe tener al menos 6 caracteres.
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <button
+    [disabled]="userForm.invalid"
+    (click)="onSubmit()"
+    class="btn btn-primary"
+    type="submit"
+  >
+    Enviar
+  </button>
+</form>
+
+<!-- 
+
+<p>Errores de user control:</p>
+<pre>{{ userControl.errors | json }} </pre>
+
+<p>Errores de mail control:</p>
+<pre>{{ emailControl.errors | json }} </pre>
+
+<p>Errores de password control:</p>
+<pre>{{ passwordControl.errors | json }} </pre>
+
+<hr />
+
+<pre>
+  {{ userForm.value | json }}
+</pre> -->
